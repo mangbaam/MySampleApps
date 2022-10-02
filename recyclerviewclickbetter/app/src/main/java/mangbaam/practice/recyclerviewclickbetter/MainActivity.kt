@@ -21,15 +21,9 @@ class MainActivity : AppCompatActivity() {
             if (!order.valid) {
                 Toast.makeText(this, "${order.tableNumber} 번 테이블 : 주문된 음식이 없습니다", Toast.LENGTH_SHORT).show()
             } else {
-                val orderInfo = StringBuilder()
-                    .append("${order.tableNumber} 번 테이블 : ")
-                if (order.gimbob) orderInfo.append("김밥 ")
-                if (order.ramen) orderInfo.append("라면 ")
-                if (order.dduckbokki) orderInfo.append("떡볶이 ")
-                if (order.cutlet) orderInfo.append("돈까스 ")
-                orderInfo.append("주문되었습니다")
+                val orderInfo = getOrderInfo(order)
 
-                Toast.makeText(this, "$orderInfo", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, orderInfo, Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -41,5 +35,17 @@ class MainActivity : AppCompatActivity() {
             )
             adapter = orderAdapter.also { it.items = tables }
         }
+    }
+
+    private fun getOrderInfo(order: Order): String {
+        val orderInfo = StringBuilder()
+            .append("${order.tableNumber} 번 테이블 : ")
+        if (order.gimbob) orderInfo.append("김밥 ")
+        if (order.ramen) orderInfo.append("라면 ")
+        if (order.dduckbokki) orderInfo.append("떡볶이 ")
+        if (order.cutlet) orderInfo.append("돈까스 ")
+        orderInfo.append("주문되었습니다")
+
+        return orderInfo.toString()
     }
 }
