@@ -46,7 +46,7 @@
             android:orientation="vertical"
             app:barrierDirection="end"
             app:barrierMargin="30dp"
-            app:constraint_referenced_ids="cb_ramen,cb_ramen" />
+            app:constraint_referenced_ids="cb_gimbob,cb_ramen" />
 
         <CheckBox
             android:id="@+id/cb_dduckbokki"
