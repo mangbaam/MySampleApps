@@ -21,7 +21,7 @@ class OrderAdapter(val orderMenu: (Order) -> Unit) :
 
         init {
             view.btnOrder.setOnClickListener {
-                onItemClicked(this.adapterPosition)
+                onItemClicked(adapterPosition)
             }
         }
 
