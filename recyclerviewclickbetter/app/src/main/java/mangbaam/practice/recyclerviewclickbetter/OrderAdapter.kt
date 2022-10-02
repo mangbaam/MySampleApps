@@ -15,8 +15,16 @@ class OrderAdapter(val orderMenu: (Order) -> Unit) :
         }
 
     inner class OrderViewHolder(
-        private val view: ItemOrderBinding
+        private val view: ItemOrderBinding,
+        onItemClicked: (Int) -> Unit
     ) : RecyclerView.ViewHolder(view.root) {
+
+        init {
+            view.btnOrder.setOnClickListener {
+                onItemClicked(this.adapterPosition)
+            }
+        }
+
         fun bind(order: Order) {
             view.tvTableNumber.text = "${order.tableNumber} 번 테이블"
             view.cbGimbob.isChecked = order.gimbob
@@ -39,7 +47,17 @@ class OrderAdapter(val orderMenu: (Order) -> Unit) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderViewHolder {
         val view = ItemOrderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return OrderViewHolder(view)
+        return OrderViewHolder(view) {
+            val order = items[it]
+            val newOrder = Order(
+                order.tableNumber,
+                view.cbGimbob.isChecked,
+                view.cbRamen.isChecked,
+                view.cbDduckbokki.isChecked,
+                view.cbCutlet.isChecked
+            )
+            orderMenu(newOrder)
+        }
     }
 
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
