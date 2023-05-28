@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">SaveableMutableStateFlow</string>
+    <string name="normal_number">일반: %d</string>
+    <string name="state_flow_number">StateFlow: %d</string>
+    <string name="saveable_state_flow_number">SaveableStateFlow: %d</string>
+</resources>
